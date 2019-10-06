@@ -1,0 +1,34 @@
+runtime: python27
+api_version: 1
+threadsafe: true
+service: backend
+
+handlers:
+- url: /service/authentication
+  script: app.services.authentication.app
+
+- url: /service/store
+  script: app.services.store.app
+
+- url: /service/oauth
+  script: app.services.authentication.app
+
+- url: /oauth
+  script: main.app
+
+- url: /.*
+  script: main.app
+
+
+libraries:
+  - name: ssl
+    version: latest
+  - name: pycrypto
+    version: latest
+
+env_variables:
+  # Replace with your Firebase project ID.
+  API_KEY: '<PROJECT_ID>'
+  # GAE_USE_SOCKETS_HTTPLIB : 'true'
+
+
